@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Akrobat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Akrobat-Regular'),
+    local('Akrobat Regular'),
+    url(Akrobat-Regular.woff2) format('woff2'),
+    url(Akrobat-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('Akrobat-Semibold'),
+    local('Akrobat Semibold'),
+    url(Akrobat-SemiBold.woff2) format('woff2'),
+    url(Akrobat-SemiBold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local('Akrobat-Bold'),
+    local('Akrobat Bold'),
+    url(Akrobat-Bold.woff2) format('woff2'),
+    url(Akrobat-Bold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src:
+    local('Akrobat-Black'),
+    local('Akrobat Black'),
+    url(Akrobat-Black.woff2) format('woff2'),
+    url(Akrobat-Black.woff) format('woff');
+}

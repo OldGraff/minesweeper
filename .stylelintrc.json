@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "stylelint-config-standard"
+  ],
+  "plugins" : [
+    "stylelint-scss"
+  ],
+  "rules": {
+    "block-no-empty": null,
+    "no-duplicate-selectors": null,
+    "no-descending-specificity": null,
+    "value-keyword-case": null,
+    "function-name-case": null,
+    "at-rule-empty-line-before": null,
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": [
+        "function",
+        "return",
+        "if",
+        "mixin",
+        "error",
+        "include",
+        "each",
+        "for"
+      ]
+    }],
+    "selector-pseudo-class-no-unknown": [true, {"ignorePseudoClasses": ["global", "local"]}]
+  }
+}

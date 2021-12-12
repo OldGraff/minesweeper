@@ -1,0 +1,72 @@
+{
+  // Настройки проекта
+  "env": {
+    "commonjs": true,
+    "node": true,
+    "es6": true,
+    "es2017": true
+  },
+  // Наборы правил
+  "extends": [
+    // Базовый набор правил eslint
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    // Отключаем правила из базового набора
+    "plugin:@typescript-eslint/eslint-recommended",
+    // Базовые правила для TypeScript
+    "plugin:@typescript-eslint/recommended",
+    // Правила TS, требующие инфо о типах
+//    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
+  ],
+  // Движок парсинга
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    // Движку нужен проект TS для правил с типами
+    "project": "tsconfig.json",
+    "tsconfigRootDir": ".",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    },
+    "react": {
+      "version":  "detect"
+    }
+  },
+  // Плагин с наборами правил для TypeScript
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "import", "eslint-plugin-import", "eslint-plugin-jsx-a11y"],
+  "ignorePatterns": ["jest/globals.js", "webpack.*.js", "src/fonts/", "dist/**/*", ".yarn/**/*", "*.html", "*.scss*", "snapshotResolver.js", "*.snap", "*.svg", "*.jpg", "*.png"],
+  "rules": {
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "@typescript-eslint/no-floating-promises": ["error", { "ignoreVoid": true }],
+    "@typescript-eslint/lines-between-class-members": "off",
+    "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/no-unused-expressions": [2, { "allowTernary": true }],
+    "no-void": ["error", { "allowAsStatement": true }],
+    "react/jsx-curly-brace-presence": [1, { "props": "never", "children": "ignore" }],
+    "max-len": [2, 120, 2],
+    "object-curly-newline": ["error", {
+      "ObjectExpression": { "multiline": true, "minProperties": 6, "consistent": true },
+      "ObjectPattern": { "multiline": true, "minProperties": 6, "consistent": true },
+      "ImportDeclaration": { "multiline": true, "minProperties": 6, "consistent": true },
+      "ExportDeclaration": { "multiline": true, "minProperties": 6, "consistent": true }
+    }],
+    "import/newline-after-import": ["error", { "count": 2 }],
+    "no-multiple-empty-lines": ["error", { "max": 2 }],
+    "react/require-default-props": [2, { "ignoreFunctionalComponents": true }],
+    "react-hooks/exhaustive-deps": "off",
+    "no-restricted-imports": ["warn", {
+      "patterns": ["../../*"]
+    }]
+  }
+}

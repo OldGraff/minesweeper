@@ -1,0 +1,16 @@
+/.vscode/
+/.idea/
+/node_modules/
+/build/
+/dist/
+/coverage/
+.eslintcache
+yarn-error.log
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/versions
+.pnp.*
+*.scss.d.ts
+junit.xml
+/storybook-static/
