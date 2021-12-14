@@ -1,3 +1,9 @@
-.cell {
-
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #008b52;
+  filter: drop-shadow(0 0 5px #666);
 }

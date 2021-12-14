@@ -12,19 +12,21 @@ export const CellField = (): ReactElement => {
   // console.log('CellField', cellField);
   return (
     <table className={styles.cellContainer}>
-      {cellField.map(
-        (row, rowI) => (
-          <tr key={rowI}>
-            {row.map(
-              (cell, cellI) => (
-                <td key={`${rowI},${cellI}`}>
-                  <Cell $cellStore={cell} />
-                </td>
-              ),
-            )}
-          </tr>
-        ),
-      )}
+      <tbody>
+        {cellField.map(
+          (row, rowI) => (
+            <tr key={rowI}>
+              {row.map(
+                (cell, cellI) => (
+                  <td key={`${rowI},${cellI}`}>
+                    <Cell $cellStore={cell} />
+                  </td>
+                ),
+              )}
+            </tr>
+          ),
+        )}
+      </tbody>
     </table>
   );
 };

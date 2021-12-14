@@ -1,9 +1,11 @@
 import { Store } from 'effector';
 import { getMatrixArray, MatrixArrayType } from './getMatrixArray';
-import { getMatrixCell, MatrixCellType } from './getMatrixCell';
+import { getMatrixCell } from './getMatrixCell';
+import { MatrixCellType } from '../types';
 
 
-export const generateField = (rows = 10, columns?: number): MatrixArrayType<Store<MatrixCellType>> => {
-  console.log(rows);
-  return getMatrixArray<Store<MatrixCellType>>(getMatrixCell, rows, columns);
-};
+export type FieldType = MatrixArrayType<Store<MatrixCellType>>;
+
+export const generateField = (rows = 10, columns?: number): FieldType => getMatrixArray<Store<MatrixCellType>>(
+  getMatrixCell, rows, columns,
+);

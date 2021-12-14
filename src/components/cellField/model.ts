@@ -1,45 +1,34 @@
-import { createStore, sample, createEvent, guard } from 'effector';
+import { createStore } from 'effector';
 import { generateField } from 'utils/generateField';
 import { getRandomInt } from 'utils/getRandomInt';
-import { Coordinates } from 'types';
+import { saveToLocalStorage, loadFromLocalStorage } from 'utils/localStorage';
+import { objectToStore, storeToObject } from 'utils/store';
+import { MatrixArrayType } from 'utils/getMatrixArray';
+import { MatrixCellType } from 'types';
 import { minePlanted } from './events';
 
 
 const MINES_COUNT = 10;
 const FIELD_SIZE = 6;
+const savedField = loadFromLocalStorage<MatrixArrayType<MatrixCellType>>('field');
+const newField = savedField ? objectToStore(savedField) : generateField(FIELD_SIZE);
 
-export const plantedAllMines = createEvent();
-export const getCellData = createEvent<Coordinates>();
-export const $minesStore = createStore(MINES_COUNT);
-export const $cellFieldStore = createStore(generateField(FIELD_SIZE));
+export const $cellFieldStore = createStore(newField);
 
-const plantAllMines = () => {
+const plantAllMines = (hasSaved: boolean) => {
+  if (hasSaved) return;
+
   for (let i = MINES_COUNT; i !== 0;) {
-    console.log('plantAllMines', i);
     const cellField = $cellFieldStore.getState();
     const [x, y] = [getRandomInt(FIELD_SIZE), getRandomInt(FIELD_SIZE)];
-    // console.log('cellField', x, y);
     const isCellHasMine = cellField[x][y].getState().hasMine;
-    console.log(isCellHasMine);
+
     if (!isCellHasMine) {
-      console.log('minePlanted', x, y);
       minePlanted({ x, y });
       i -= 1;
     }
   }
+  saveToLocalStorage(storeToObject($cellFieldStore));
 };
-plantAllMines();
-// Array.from({ length: MINES_COUNT }, () => {
-//   console.log('getRandomInt', getRandomInt(FIELD_SIZE));
-//   console.log($cellFieldStore.getState());
-//   return 1;
-// });
 
-const cellDataSelected = sample({
-  source: $cellFieldStore,
-  clock: getCellData,
-  fn: ((source, clock) => source[clock.x][clock.y]),
-});
-
-// getCellData({ x: 1, y: 2 });
-// console.log('test', test);
+plantAllMines(Boolean(savedField));
