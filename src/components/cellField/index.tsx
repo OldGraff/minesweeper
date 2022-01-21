@@ -11,22 +11,24 @@ export const CellField = (): ReactElement => {
   const cellField = useStore($cellFieldStore);
   // console.log('CellField', cellField);
   return (
-    <table className={styles.cellContainer}>
-      <tbody>
-        {cellField.map(
-          (row, rowI) => (
-            <tr key={rowI}>
-              {row.map(
-                (cell, cellI) => (
-                  <td key={`${rowI},${cellI}`}>
-                    <Cell $cellStore={cell} />
-                  </td>
-                ),
-              )}
-            </tr>
-          ),
-        )}
-      </tbody>
-    </table>
+    <div className={styles.wrapper}>
+      <table className={styles.cellContainer}>
+        <tbody>
+          {cellField.map(
+            (row, rowI) => (
+              <tr key={rowI}>
+                {row.map(
+                  (cell, cellI) => (
+                    <td key={`${rowI},${cellI}`}>
+                      <Cell $cellStore={cell} />
+                    </td>
+                  ),
+                )}
+              </tr>
+            ),
+          )}
+        </tbody>
+      </table>
+    </div>
   );
 };

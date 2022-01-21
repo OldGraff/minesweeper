@@ -3,7 +3,9 @@ import { useStore } from 'effector-react';
 import { Store } from 'effector';
 
 import { MatrixCellType } from 'types';
+import clsx from 'clsx';
 import styles from './styles.scss';
+import { cellOpened } from '../cellField/events';
 
 
 interface CellProps {
@@ -11,12 +13,16 @@ interface CellProps {
 }
 
 export const Cell = ({ $cellStore }: CellProps): ReactElement => {
-  const { hasMine, minesAround } = useStore($cellStore);
+  const { hasMine, hasOpen, minesAround, coordinates } = useStore($cellStore);
 
   return (
-    <div className={styles.root}>
+    <button
+      className={clsx(styles.root, hasOpen && styles.open)}
+      type="button"
+      onClick={hasOpen ? undefined : () => cellOpened({ ...coordinates })}
+    >
       {!hasMine && minesAround}
       {hasMine && 'M!'}
-    </div>
+    </button>
   );
 };
